@@ -18,7 +18,7 @@ after_script:
   - git config --global user.name "TravisCI"
   - cp -R build/coverage ${HOME}/coverage
   - cd ${HOME}
-  - git clone --quiet --branch=gh-pages https://${GITHUBTOKEN}@github.com:nathanmac/dummy.git gh-pages > /dev/null
+  - git clone --quiet --branch=gh-pages https://${GITHUBTOKEN}@github.com/nathanmac/dummy.git gh-pages > /dev/null
   - cd gh-pages
   - mkdir ${TRAVIS_BRANCH}
   - cd ${TRAVIS_BRANCH}
