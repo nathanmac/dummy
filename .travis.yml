@@ -5,7 +5,24 @@ php:
   - 5.5
   - 5.6
 
+env:
+  - secure: "tSfO1scWd+wMsHlAPUA3WQOXL8FLRqwmLT6ghUxV5BXNu/RPIfJrRr+n61RZ3yFhD60/GD/c5fSuREQIm4pFrr2ffCy+oWp1vW7oaycFYvVuHuGTkrYoKCxf4ep/fCFLWU3Z8Dz7/0UcDtrzwdQ5uvFhmd6vsF8kEasf6uiTPP8="
+
 before_script:
   # Composer Setup
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+
+after_script:
+  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.name "TravisCI"
+  - cp -R build/coverage ${HOME}/coverage
+  - cd ${HOME}
+  - git clone --quiet --branch=gh-pages https://${GITHUBTOKEN}github.com:nathanmac/dummy.git gh-pages > /dev/null
+  - cd gh-pages
+  - mkdir ${TRAVIS_BRANCH}
+  - cd ${TRAVIS_BRANCH}
+  - cp -Rf $HOME/coverage/* .
+  - git add -f .
+  - git commit -m "Travis pushed coverage of ${TRAVIS_COMMIT}@${TRAVIS_BRANCH} to gh-pages"
+  - git push -fq origin gh-pages > /dev/null
