@@ -1,0 +1,24 @@
+{
+  "name": "nathanmac/dummy",
+  "description": "Dummy",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nathan Macnamara",
+      "email": "nathan.macnamara@outlook.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "mockery/mockery": "0.9.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Acme\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
